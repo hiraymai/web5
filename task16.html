@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Push Sidebar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; 
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            transition: left 0.3s ease;
+            padding: 15px;
+        }
+
+        .content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            padding: 20px;
+        }
+
+        .toggle-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <h2>Sidebar Menu</h2>
+        <ul>
+            <li><a href="#" style="color: white;">Item 1</a></li>
+            <li><a href="#" style="color: white;">Item 2</a></li>
+            <li><a href="#" style="color: white;">Item 3</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+        <button class="toggle-btn" id="toggle-btn">Toggle Sidebar</button>
+        <h1>Main Content</h1>
+        <p>This is the main content area.</p>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        toggleBtn.addEventListener('click', () => {
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-250px';
+                content.style.marginLeft = '0'; 
+            } else {
+                sidebar.style.left = '0px';
+                content.style.marginLeft = '250px'; 
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .calendar {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 10px;
+        }
+
+        .day {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calendar">
+    <div class="header">
+        <span class="prev" id="prev">&lt;</span>
+        <h2 id="monthYear"></h2>
+        <span class="next" id="next">&gt;</span>
+    </div>
+    <div class="days" id="days"></div>
+</div>
+
+<script>
+    const monthYear = document.getElementById('monthYear');
+    const daysContainer = document.getElementById('days');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    let currentDate = new Date();
+
+    function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        monthYear.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+        daysContainer.innerHTML = '';
+
+        const firstDay = new Date(year, month, 1).getDay();
+
+        const totalDays = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+            daysContainer.innerHTML += `<div class="day"></div>`; 
+        }
+
+        for (let day = 1; day <= totalDays; day++) {
+            daysContainer.innerHTML += `<div class="day">${day}</div>`;
+        }
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
+</script>
+
+</body>
+</html>

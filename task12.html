@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cylinder Volume Calculator</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 300px;
+    border-radius: 5px;
+}
+input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    box-sizing: border-box;
+}
+button {
+    padding: 8px;
+    width: 100%;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Calculate the Volume of a Cylinder</h3>
+
+        <label for="radius">Radius (r):</label>
+        <input type="number" id="radius" placeholder="Enter radius" required>
+
+        <label for="height">Height (h):</label>
+        <input type="number" id="height" placeholder="Enter height" required>
+
+        <label for="volume">Volume (V):</label>
+        <input type="text" id="volume" placeholder="0.0000" readonly>
+
+        <button onclick="calculateCylinderVolume()">Calculate</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

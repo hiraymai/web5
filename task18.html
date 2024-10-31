@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 400px;
+            height: 400px;
+            border: 2px dashed #007BFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        .draggable {
+            width: 80px;
+            height: 80px;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="drop-area">
+        <h3>Drag and Drop Here</h3>
+        <div class="draggable" draggable="true" id="drag-item">Drag Me</div>
+    </div>
+
+    <script>
+        const dragItem = document.getElementById('drag-item');
+        const dropArea = document.getElementById('drop-area');
+
+        dragItem.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', e.target.id);
+        });
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const id = e.dataTransfer.getData('text/plain');
+            const draggableElement = document.getElementById(id);
+            dropArea.appendChild(draggableElement);
+        });
+    </script>
+
+</body>
+</html>
